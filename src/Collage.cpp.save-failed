@@ -1,0 +1,18 @@
+#include "Collage.hpp"
+#include "Defines.hpp"
+
+
+Collage::Collage(unsigned nParts, unsigned imgw, unsigned imgh) {
+    for (auto i=0u; i<nParts; ++i)
+        parts_.emplace_back(tex1, sf::Vector2f(RF*IMGW, RF*IMGH), 0.05f+RF*0.25f, RF*360.0f);
+}
+
+void Collage::draw(sf::RenderTexture tex) {
+    for (auto& p : parts_)
+        p.draw(tex);
+}
+
+void Collage::randomize(void) {
+    for (auto& p : parts_)
+        p.set(sf::Vector2f(RF*IMGW, RF*IMGH), 0.05f+RF*0.25f, RF*360.0f);
+}
